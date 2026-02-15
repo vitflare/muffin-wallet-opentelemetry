@@ -1,0 +1,44 @@
+replicaCount: 1
+
+image:
+  repository: vitflare/muffin-wallet
+  tag: "1.2.0"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+containerPort: 8080
+
+database:
+  host: postgresql  
+  name: muffin_wallet
+  username: muffin-wallet
+  password: muffin-wallet
+
+currencyService:
+  url: http://muffin-currency:8083/rate
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 5
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: 8080
+  initialDelaySeconds: 50
+  periodSeconds: 10
+
+javaOpts: -Dspring.config.additional-location=/app/config/application.yaml
+
+# zipkin:
+#   endpoint: http://zipkin.monitoring.svc.cluster.local:9411/api/v2/spans
+#   connectTimeout: 5s
+#   readTimeout: 5s
+#   messageTimeout: 5s

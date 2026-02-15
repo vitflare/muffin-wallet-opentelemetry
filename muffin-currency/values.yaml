@@ -1,0 +1,27 @@
+replicaCount: 1
+
+image:
+  repository: vitflare/muffin-currency
+  tag: "1.2.1"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8083
+  targetPort: 8080
+
+containerPort: 8080
+
+livenessProbe:
+  httpGet:
+    path: /rate?from=PLAIN&to=CHOKOLATE
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 60
+
+readinessProbe:
+  httpGet:
+    path: /rate?from=PLAIN&to=CHOKOLATE
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 60
