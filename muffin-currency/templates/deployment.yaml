@@ -13,9 +13,6 @@ spec:
     metadata:
       labels:
         {{- include "muffin-currency.selectorLabels" . | nindent 8 }}
-      annotations:
-        # Автоинструментация через OpenTelemetry Operator
-        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
       - name: {{ .Chart.Name }}

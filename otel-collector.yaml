@@ -41,6 +41,7 @@ spec:
       telemetry:
         metrics:
           address: ":8890"
+
       pipelines:
         traces:
           receivers: [otlp]
