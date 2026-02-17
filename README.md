@@ -220,6 +220,7 @@ kubectl port-forward svc/loki 3100:3100
 # Проверка labels
 curl -s "http://localhost:3100/loki/api/v1/labels" | jq
 ```
+![logs in grafana](./screenshots/grafana_2.png)
 
 ### 3. Проверка Zipkin
 
@@ -231,6 +232,8 @@ kubectl port-forward svc/zipkin 9411:9411
 # Выберите service: muffin-wallet или muffin-currency
 # Нажмите "Run Query"
 ```
+
+![traces](./screenshots/trace.png)
 
 ### 4. Проверка метрик приложений
 
@@ -272,6 +275,7 @@ kubectl port-forward svc/grafana 3000:3000
 - Username: `admin`
 - Password: `admin`
 
+![grafana](./screenshots/grafana_1.png)
 ---
 
 ## Детальное описание панелей дашборда
